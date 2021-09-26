@@ -1,0 +1,11 @@
+.meninas {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 6px;
+  border-radius: 10px;
+  vertical-align: middle;
+  box-shadow: 0 0 10px black;
+}
