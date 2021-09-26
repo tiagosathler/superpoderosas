@@ -22,7 +22,7 @@ class RenderizaResultados extends Component {
     return (
       <div className="espaco-do-professor">
         <div className="imagem-do-professor">
-          <img src="https://www.clipartmax.com/png/full/159-1595855_%C2%A0-powerpuff-girls-professor-utonium.png" alt="Professor" width="100px" />
+          <img src="images/Professor.png" alt="Professor" width="100px" />
         </div>
         <div className="resultados">
           <h3>Seja bem vindo</h3>

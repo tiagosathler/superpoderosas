@@ -21,7 +21,7 @@ class Docinho extends Component {
       <div className="componente-docinho meninas">
         <div className="imagem">
           <img
-            src="https://www.clipartmax.com/png/full/46-464381_powerpuff-girls-clipart.png"
+            src="/images/Docinho.png"
             alt="Docinho"
             width="100px"
           />

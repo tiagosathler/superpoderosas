@@ -26,7 +26,7 @@ class Lindinha extends Component {
     return (
       <div className="componente-lindinha meninas">
         <div className="imagem">
-          <img src="https://www.clipartmax.com/png/full/46-462876_girl-watching-tv-clipart.png" width="100px" alt="Lindinha" />
+          <img src="/images/Lindinha.png" width="100px" alt="Lindinha" />
         </div>
         <div className="tarefa">
           <h3>Lindinha</h3>

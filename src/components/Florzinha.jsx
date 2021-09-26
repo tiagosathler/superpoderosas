@@ -16,6 +16,7 @@ class Florzinha extends Component {
     this.sortearNumeros = this.sortearNumeros.bind(this);
     this.lidarComDigitacao = this.lidarComDigitacao.bind(this);
     this.testarTabuada = this.testarTabuada.bind(this);
+    this.atualizarComNumerosProfessor = this.atualizarComNumerosProfessor.bind(this);
   }
 
   componentDidMount() {
@@ -25,13 +26,17 @@ class Florzinha extends Component {
   componentDidUpdate(prevProps) {
     const { numA, numB } = this.props;
     if (numA !== prevProps.numA || numB !== prevProps.numB) {
-      this.setState({
-        numeroA: numA,
-        numeroB: numB,
-        resultado: '',
-        taCerto: false,
-      });
+      this.atualizarComNumerosProfessor(numA, numB);
     }
+  }
+
+  atualizarComNumerosProfessor(numA, numB) {
+    this.setState({
+      numeroA: numA,
+      numeroB: numB,
+      resultado: '',
+      taCerto: false,
+    });
   }
 
   sortearNumeros() {
@@ -69,7 +74,7 @@ class Florzinha extends Component {
     return (
       <div className="componente-florzinha meninas">
         <div className="imagem">
-          <img src="https://www.clipartmax.com/png/full/3-30770_bubbles-clipart.png" alt="Florzinha" width="100px" />
+          <img src="/images/Florzinha.png" alt="Florzinha" width="100px" />
 
         </div>
         <div className="tarefa">
@@ -84,8 +89,17 @@ class Florzinha extends Component {
               onChange={ this.lidarComDigitacao }
             />
           </label>
-          { !taCerto && resultado && <p>{`Humm, acho que ${resultado} está errado, professor não vai gostar...`}</p> }
-          { taCerto && resultado && <p>Tá certo, pode mandar para o professor que ele vai gostar e vou embora...!</p>}
+          { !taCerto && resultado
+          && (
+            <p>
+              {`Humm, acho que ${resultado} está errado, professor não vai gostar...`}
+            </p>) }
+          { taCerto && resultado
+          && (
+            <p>
+              Tá certo, pode mandar para o professor que ele vai gostar e vou embora...!
+            </p>
+          )}
           <button
             type="button"
             onClick={ () => this.testarTabuada() }
