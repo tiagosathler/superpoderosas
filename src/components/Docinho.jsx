@@ -16,7 +16,7 @@ class Docinho extends Component {
   }
 
   render() {
-    const { contagem, contarNumero } = this.props;
+    const { contagem, contarNumeroDeDocinho } = this.props;
     return (
       <div className="docinho meninas">
         <h3>Docinho</h3>
@@ -32,18 +32,18 @@ class Docinho extends Component {
         </p>
 
         <h3>{ contagem }</h3>
-        <button
-          type="button"
-          onClick={ contarNumero }
-        >
-          Contar
-        </button>
-
         <img
           src="https://www.clipartmax.com/png/full/46-464381_powerpuff-girls-clipart.png"
           alt="Docinho"
           width="100px"
         />
+        <button
+          id="botao-docinho"
+          type="button"
+          onClick={ contarNumeroDeDocinho }
+        >
+          Contar
+        </button>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import Lindinha from '../components/Lindinha';
 import '../styles/Professor.css';
 
 const MAX_CONTAGEM_PARA_DOCINHO = 15;
+const MAX_MULTIPLICADOR = 10;
 
 class Professor extends React.Component {
   constructor() {
@@ -16,6 +17,13 @@ class Professor extends React.Component {
       visitante: '',
       contagem: 0,
       mensagemDeDocinho: '',
+      numA: 0,
+      numB: 0,
+      numAAnt: 0,
+      numBAnt: 0,
+      tabuada: 0,
+      taErradoFlorzinha: false,
+      passeiNovosNumeros: false,
 
       // solucao: 0,
       // contagem: 0,
@@ -23,12 +31,13 @@ class Professor extends React.Component {
       // numeroB: 0,
     };
 
-    this.receberNome = this.receberNome.bind(this);
-    this.contarNumero = this.contarNumero.bind(this);
+    this.receberNomeDeLindinha = this.receberNomeDeLindinha.bind(this);
+    this.contarNumeroDeDocinho = this.contarNumeroDeDocinho.bind(this);
     this.ouvirDocinho = this.ouvirDocinho.bind(this);
+    this.receberTabuadaDeFlorzinha = this.receberTabuadaDeFlorzinha.bind(this);
   }
 
-  receberNome(nome) {
+  receberNomeDeLindinha(nome) {
     if (nome !== '' && nome.length > 2) {
       this.setState({
         visitante: nome,
@@ -37,7 +46,7 @@ class Professor extends React.Component {
     }
   }
 
-  contarNumero() {
+  contarNumeroDeDocinho() {
     const { contagem } = this.state;
     if (contagem < MAX_CONTAGEM_PARA_DOCINHO) {
       this.setState({
@@ -56,6 +65,33 @@ class Professor extends React.Component {
     });
   }
 
+  receberTabuadaDeFlorzinha(numA, numB, resultado) {
+    // console.log(`Testando tabuada no professor: ${numA} x ${numB} === ${resultado} ?`);
+    if (numA * numB === Number(resultado)) {
+      this.setState({
+        numA,
+        numB,
+        tabuada: resultado,
+        temTarefaFlorzinha: false,
+        taErradoFlorzinha: false,
+        passeiNovosNumeros: false,
+      });
+    } else {
+      const novoNumA = Math.ceil(Math.random() * MAX_MULTIPLICADOR);
+      const novoNumB = Math.ceil(Math.random() * MAX_MULTIPLICADOR);
+      this.setState({
+        numA: novoNumA,
+        numB: novoNumB,
+        numAAnt: numA,
+        numBAnt: numB,
+        tabuada: resultado,
+        taErradoFlorzinha: true,
+        temTarefaFlorzinha: true,
+        passeiNovosNumeros: true,
+      });
+    }
+  }
+
   render() {
     const {
       temTarefaLindinha,
@@ -65,6 +101,14 @@ class Professor extends React.Component {
       mensagemDeDocinho,
       visitante,
       contagem,
+      numA,
+      numB,
+      numAAnt,
+      numBAnt,
+      tabuada,
+      taErradoFlorzinha,
+      passeiNovosNumeros,
+      outrosNumeros,
     } = this.state;
     return (
       <div className="Professor">
@@ -75,7 +119,21 @@ class Professor extends React.Component {
           </div>
           <div>
             <h3>Seja bem vindo</h3>
-            { !temTarefaLindinha && <h4>{`Olá "${visitante}", amigo de Florzinha`}</h4>}
+            <p>Algumas tarefas foram combinadas com as meninas...</p>
+            <p>
+              Lindinha me passará seu nome,
+              Florzinha deve resolver uma tabuada
+              e Docinho deve clicar 15 vezes no botão Contar. Vqv!
+            </p>
+            {/* Renderiza resultados de Lindinha */}
+            { !temTarefaLindinha && <h4>{`Olá "${visitante}", amigo de Lindinha`}</h4>}
+
+            {/* Renderiza resultados de Florzinha */}
+            { !taErradoFlorzinha && tabuada > 0 && <h4>{`A Florzinha resolveu a tabuada de "${numA} x ${numB} = ${tabuada}"!`}</h4> }
+            { taErradoFlorzinha && tabuada && <p>{`Tá errado Florzinha! Tabuada de "${numAAnt} x ${numBAnt}" não é "${tabuada}"!`}</p> }
+            { taErradoFlorzinha && passeiNovosNumeros && <p>{`Passei outros números da tabuada (${numA} x ${numB}) para Florzinha, vamos ver se ela sabe agora...`}</p> }
+
+            {/* Renderiza resultados de Docinho */}
             { contagem > 0 && <h4>{`A contagem de Docinho: ${contagem}`}</h4> }
             { !temTarefaDocinho && <p>{`Docinho me disse: "${mensagemDeDocinho}" Danadinha!`}</p>}
 
@@ -90,16 +148,24 @@ class Professor extends React.Component {
             { temTarefaLindinha
               ? (
                 <Lindinha
-                  receberNome={ this.receberNome }
+                  receberNomeDeLindinha={ this.receberNomeDeLindinha }
                   nomeInvalido={ nomeInvalido }
                 />
               )
-              : <p>Lindinha já se foi...</p> }
+              : <p>Lindinha se foi...</p> }
           </div>
 
           <div className="espaco-da-menina">
             <small><em>espaço para Florzinha</em></small>
-            { temTarefaFlorzinha ? <Florzinha /> : <p>Florzinha já se foi...</p> }
+            { temTarefaFlorzinha
+              ? (
+                <Florzinha
+                  receberTabuadaDeFlorzinha={ this.receberTabuadaDeFlorzinha }
+                  numA={ numA }
+                  numB={ numB }
+                />
+              )
+              : <p>Florzinha se foi...</p> }
           </div>
 
           <div className="espaco-da-menina">
@@ -108,15 +174,13 @@ class Professor extends React.Component {
               ? (
                 <Docinho
                   contagem={ contagem }
-                  contarNumero={ this.contarNumero }
+                  contarNumeroDeDocinho={ this.contarNumeroDeDocinho }
                   ouvirDocinho={ this.ouvirDocinho }
                 />
               )
-              : <p>Docinho já se foi....</p>}
+              : <p>Docinho se foi....</p>}
           </div>
-
         </div>
-
       </div>
     );
   }

@@ -21,7 +21,7 @@ class Lindinha extends Component {
   }
 
   render() {
-    const { receberNome } = this.props;
+    const { receberNomeDeLindinha } = this.props;
     const { nome } = this.state;
     return (
       <div className="lindinha meninas">
@@ -40,7 +40,7 @@ class Lindinha extends Component {
         </label>
         <button
           type="button"
-          onClick={ () => receberNome(nome) }
+          onClick={ () => receberNomeDeLindinha(nome) }
         >
           Enviar
         </button>
