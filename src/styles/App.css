@@ -12,3 +12,8 @@ html, body, #root {
   height: 100%;
   /* margin: 4px; */
 }
+
+p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

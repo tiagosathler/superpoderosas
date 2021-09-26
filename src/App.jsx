@@ -1,7 +1,6 @@
 import React from 'react';
 import Professor from './pages/Professor';
-import './styles/App.css'
-
+import './styles/App.css';
 
 class App extends React.Component {
   render() {
@@ -11,7 +10,6 @@ class App extends React.Component {
       </div>
     );
   }
-  
 }
 
 export default App;

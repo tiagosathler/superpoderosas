@@ -4,6 +4,8 @@ import Florzinha from '../components/Florzinha';
 import Lindinha from '../components/Lindinha';
 import '../styles/Professor.css';
 
+const MAX_CONTAGEM_PARA_DOCINHO = 15;
+
 class Professor extends React.Component {
   constructor() {
     super();
@@ -12,13 +14,18 @@ class Professor extends React.Component {
       temTarefaFlorzinha: true,
       temTarefaDocinho: true,
       visitante: '',
-      solucao: 0,
       contagem: 0,
-      numeroA: 0,
-      numeroB: 0,
+      mensagemDeDocinho: '',
+
+      // solucao: 0,
+      // contagem: 0,
+      // numeroA: 0,
+      // numeroB: 0,
     };
 
     this.receberNome = this.receberNome.bind(this);
+    this.contarNumero = this.contarNumero.bind(this);
+    this.ouvirDocinho = this.ouvirDocinho.bind(this);
   }
 
   receberNome(nome) {
@@ -30,13 +37,34 @@ class Professor extends React.Component {
     }
   }
 
+  contarNumero() {
+    const { contagem } = this.state;
+    if (contagem < MAX_CONTAGEM_PARA_DOCINHO) {
+      this.setState({
+        contagem: contagem + 1,
+      });
+    } else {
+      this.setState({
+        temTarefaDocinho: false,
+      });
+    }
+  }
+
+  ouvirDocinho(mensagemRecebida) {
+    this.setState({
+      mensagemDeDocinho: mensagemRecebida,
+    });
+  }
+
   render() {
     const {
       temTarefaLindinha,
       nomeInvalido,
       temTarefaFlorzinha,
       temTarefaDocinho,
+      mensagemDeDocinho,
       visitante,
+      contagem,
     } = this.state;
     return (
       <div className="Professor">
@@ -46,8 +74,11 @@ class Professor extends React.Component {
             <img src="https://www.clipartmax.com/png/full/159-1595855_%C2%A0-powerpuff-girls-professor-utonium.png" alt="Professor" width="100px" />
           </div>
           <div>
-            <h3>Seja bem vindo:</h3>
-            { !temTarefaLindinha && <h4>{visitante}</h4>}
+            <h3>Seja bem vindo</h3>
+            { !temTarefaLindinha && <h4>{`Olá "${visitante}", amigo de Florzinha`}</h4>}
+            { contagem > 0 && <h4>{`A contagem de Docinho: ${contagem}`}</h4> }
+            { !temTarefaDocinho && <p>{`Docinho me disse: "${mensagemDeDocinho}" Danadinha!`}</p>}
+
           </div>
         </div>
 
@@ -60,7 +91,6 @@ class Professor extends React.Component {
               ? (
                 <Lindinha
                   receberNome={ this.receberNome }
-                  lidarComDigitacao={ this.lidarComDigitacao }
                   nomeInvalido={ nomeInvalido }
                 />
               )
@@ -74,7 +104,15 @@ class Professor extends React.Component {
 
           <div className="espaco-da-menina">
             <small><em>espaço para Docinho</em></small>
-            { temTarefaDocinho ? <Docinho /> : <p>Docinho já se foi....</p> }
+            { temTarefaDocinho
+              ? (
+                <Docinho
+                  contagem={ contagem }
+                  contarNumero={ this.contarNumero }
+                  ouvirDocinho={ this.ouvirDocinho }
+                />
+              )
+              : <p>Docinho já se foi....</p>}
           </div>
 
         </div>
