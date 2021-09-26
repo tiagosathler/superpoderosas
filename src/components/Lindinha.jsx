@@ -24,26 +24,30 @@ class Lindinha extends Component {
     const { receberNomeDeLindinha } = this.props;
     const { nome } = this.state;
     return (
-      <div className="lindinha meninas">
-        <h3>Lindinha</h3>
-        <p>Oi tudo bem? Minha tarefa é passar seu nome para o professor</p>
-        <img src="https://www.clipartmax.com/png/full/46-462876_girl-watching-tv-clipart.png" width="100px" alt="Lindinha" />
-        <label htmlFor="input-nome">
-          Qual seu nome?
-          <input
-            id="input-nome"
-            type="text"
-            value={ nome }
-            name="nome"
-            onChange={ this.lidarComDigitacao }
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ () => receberNomeDeLindinha(nome) }
-        >
-          Enviar
-        </button>
+      <div className="componente-lindinha meninas">
+        <div className="imagem">
+          <img src="https://www.clipartmax.com/png/full/46-462876_girl-watching-tv-clipart.png" width="100px" alt="Lindinha" />
+        </div>
+        <div className="tarefa">
+          <h3>Lindinha</h3>
+          <p>Oi tudo bem? Minha tarefa é passar seu nome para o professor</p>
+          <label htmlFor="input-nome">
+            Qual seu nome?
+            <input
+              id="input-nome"
+              type="text"
+              value={ nome }
+              name="nome"
+              onChange={ this.lidarComDigitacao }
+            />
+          </label>
+          <button
+            type="button"
+            onClick={ () => receberNomeDeLindinha(nome) }
+          >
+            Enviar
+          </button>
+        </div>
 
       </div>
     );

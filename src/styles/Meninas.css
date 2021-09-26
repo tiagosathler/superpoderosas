@@ -1,10 +1,21 @@
 .meninas {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 6px;
+  height: 90%;
+  /* padding: 6px; */
+  margin: 10px;
   border-radius: 10px;  
   box-shadow: 0 0 10px black;
+}
+
+.imagem {
+  flex-basis: 20%;
+  margin-right: 2px;
+}
+
+.tarefa {
+  flex-basis: 80%;
+  margin-left: 2px;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+
 import Docinho from '../components/Docinho';
 import Florzinha from '../components/Florzinha';
 import Lindinha from '../components/Lindinha';
@@ -126,37 +126,43 @@ class Professor extends React.Component {
   render() {
     const {
       temTarefaLindinha,
-
+      visitante,
       nomeInvalido,
       temTarefaFlorzinha,
       numA,
       numB,
-
+      numAAnt,
+      numBAnt,
+      tabuada,
+      taErradoFlorzinha,
+      passeiNovosNumeros,
       temTarefaDocinho,
       contagem,
+      mensagemDeDocinho,
     } = this.state;
     return (
       <div className="Professor">
         <small>componente Professor</small>
-        <div className="espaco-do-professor">
-          <div>
-            <img src="https://www.clipartmax.com/png/full/159-1595855_%C2%A0-powerpuff-girls-professor-utonium.png" alt="Professor" width="100px" />
-          </div>
-          <div>
-            <h3>Seja bem vindo</h3>
-            <p>Algumas tarefas foram combinadas com as meninas...</p>
-            <p>
-              Lindinha me passará seu nome,
-              Florzinha deve resolver uma tabuada
-              e Docinho deve clicar 15 vezes no botão Contar. Vqv!
-            </p>
-            <RenderizaResultados state={ this.state } />
-          </div>
-        </div>
+        <RenderizaResultados
+          state={
+            ({ temTarefaLindinha,
+              temTarefaDocinho,
+              visitante,
+              numA,
+              numB,
+              numAAnt,
+              numBAnt,
+              tabuada,
+              taErradoFlorzinha,
+              passeiNovosNumeros,
+              contagem,
+              mensagemDeDocinho })
+          }
+        />
 
         <div className="quarto-das-meninas">
 
-          <div className="espaco-da-menina">
+          <div className="espaco-da-menina lindinha">
             <small><em>espaço para Lindinha</em></small>
             { temTarefaLindinha
               ? (
@@ -179,7 +185,7 @@ class Professor extends React.Component {
               )}
           </div>
 
-          <div className="espaco-da-menina">
+          <div className="espaco-da-menina florzinha">
             <small><em>espaço para Florzinha</em></small>
             { temTarefaFlorzinha
               ? (
@@ -203,7 +209,7 @@ class Professor extends React.Component {
               )}
           </div>
 
-          <div className="espaco-da-menina">
+          <div className="espaco-da-menina docinho">
             <small><em>espaço para Docinho</em></small>
             { temTarefaDocinho
               ? (

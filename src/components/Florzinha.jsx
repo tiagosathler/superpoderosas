@@ -67,27 +67,32 @@ class Florzinha extends Component {
   render() {
     const { numeroA, numeroB, resultado, taCerto } = this.state;
     return (
-      <div className="florzinha meninas">
-        <h3>Florzinha</h3>
-        <p>{`Me ajude a descobrir a tabuada de "${numeroA} x ${numeroB}" ?`}</p>
-        <img src="https://www.clipartmax.com/png/full/3-30770_bubbles-clipart.png" alt="Florzinha" width="100px" />
-        <label htmlFor="tabuada">
-          Sua resposta:
-          <input
-            type="number"
-            value={ resultado }
-            name="resultado"
-            onChange={ this.lidarComDigitacao }
-          />
-        </label>
-        { !taCerto && resultado && <p>{`Humm, acho que ${resultado} está errado, professor não vai gostar...`}</p> }
-        { taCerto && resultado && <p>Tá certo, pode mandar para o professor que ele vai gostar e vou embora...!</p>}
-        <button
-          type="button"
-          onClick={ () => this.testarTabuada() }
-        >
-          Enviar
-        </button>
+      <div className="componente-florzinha meninas">
+        <div className="imagem">
+          <img src="https://www.clipartmax.com/png/full/3-30770_bubbles-clipart.png" alt="Florzinha" width="100px" />
+
+        </div>
+        <div className="tarefa">
+          <h3>Florzinha</h3>
+          <p>{`Me ajude a descobrir a tabuada de "${numeroA} x ${numeroB}" ?`}</p>
+          <label htmlFor="tabuada">
+            Sua resposta:
+            <input
+              type="number"
+              value={ resultado }
+              name="resultado"
+              onChange={ this.lidarComDigitacao }
+            />
+          </label>
+          { !taCerto && resultado && <p>{`Humm, acho que ${resultado} está errado, professor não vai gostar...`}</p> }
+          { taCerto && resultado && <p>Tá certo, pode mandar para o professor que ele vai gostar e vou embora...!</p>}
+          <button
+            type="button"
+            onClick={ () => this.testarTabuada() }
+          >
+            Enviar
+          </button>
+        </div>
       </div>
     );
   }
