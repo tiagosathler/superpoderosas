@@ -34,6 +34,15 @@ class Florzinha extends Component {
     }
   }
 
+  sortearNumeros() {
+    const numA = Math.ceil(Math.random() * MAX_MULTIPLICADOR);
+    const numB = Math.ceil(Math.random() * MAX_MULTIPLICADOR);
+    this.setState({
+      numeroA: numA,
+      numeroB: numB,
+    });
+  }
+
   lidarComDigitacao({ target }) {
     const { numeroA, numeroB } = this.state;
     const { name, value } = target;
@@ -42,15 +51,6 @@ class Florzinha extends Component {
     this.setState({
       [name]: value,
       taCerto: testeDaTabuada,
-    });
-  }
-
-  sortearNumeros() {
-    const numA = Math.ceil(Math.random() * MAX_MULTIPLICADOR);
-    const numB = Math.ceil(Math.random() * MAX_MULTIPLICADOR);
-    this.setState({
-      numeroA: numA,
-      numeroB: numB,
     });
   }
 
@@ -65,7 +65,6 @@ class Florzinha extends Component {
   }
 
   render() {
-    // const { receberTabuada } = this.props;
     const { numeroA, numeroB, resultado, taCerto } = this.state;
     return (
       <div className="florzinha meninas">

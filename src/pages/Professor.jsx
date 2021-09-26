@@ -24,17 +24,12 @@ class Professor extends React.Component {
       tabuada: 0,
       taErradoFlorzinha: false,
       passeiNovosNumeros: false,
-
-      // solucao: 0,
-      // contagem: 0,
-      // numeroA: 0,
-      // numeroB: 0,
     };
 
     this.receberNomeDeLindinha = this.receberNomeDeLindinha.bind(this);
+    this.receberTabuadaDeFlorzinha = this.receberTabuadaDeFlorzinha.bind(this);
     this.contarNumeroDeDocinho = this.contarNumeroDeDocinho.bind(this);
     this.ouvirDocinho = this.ouvirDocinho.bind(this);
-    this.receberTabuadaDeFlorzinha = this.receberTabuadaDeFlorzinha.bind(this);
   }
 
   receberNomeDeLindinha(nome) {
@@ -44,25 +39,6 @@ class Professor extends React.Component {
         temTarefaLindinha: false,
       });
     }
-  }
-
-  contarNumeroDeDocinho() {
-    const { contagem } = this.state;
-    if (contagem < MAX_CONTAGEM_PARA_DOCINHO) {
-      this.setState({
-        contagem: contagem + 1,
-      });
-    } else {
-      this.setState({
-        temTarefaDocinho: false,
-      });
-    }
-  }
-
-  ouvirDocinho(mensagemRecebida) {
-    this.setState({
-      mensagemDeDocinho: mensagemRecebida,
-    });
   }
 
   receberTabuadaDeFlorzinha(numA, numB, resultado) {
@@ -92,15 +68,31 @@ class Professor extends React.Component {
     }
   }
 
+  contarNumeroDeDocinho() {
+    const { contagem } = this.state;
+    if (contagem < MAX_CONTAGEM_PARA_DOCINHO) {
+      this.setState({
+        contagem: contagem + 1,
+      });
+    } else {
+      this.setState({
+        temTarefaDocinho: false,
+      });
+    }
+  }
+
+  ouvirDocinho(mensagemRecebida) {
+    this.setState({
+      mensagemDeDocinho: mensagemRecebida,
+    });
+  }
+
   render() {
     const {
       temTarefaLindinha,
+      visitante,
       nomeInvalido,
       temTarefaFlorzinha,
-      temTarefaDocinho,
-      mensagemDeDocinho,
-      visitante,
-      contagem,
       numA,
       numB,
       numAAnt,
@@ -108,7 +100,9 @@ class Professor extends React.Component {
       tabuada,
       taErradoFlorzinha,
       passeiNovosNumeros,
-      outrosNumeros,
+      temTarefaDocinho,
+      contagem,
+      mensagemDeDocinho,
     } = this.state;
     return (
       <div className="Professor">
