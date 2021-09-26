@@ -30,6 +30,7 @@ class Professor extends React.Component {
     this.receberTabuadaDeFlorzinha = this.receberTabuadaDeFlorzinha.bind(this);
     this.contarNumeroDeDocinho = this.contarNumeroDeDocinho.bind(this);
     this.ouvirDocinho = this.ouvirDocinho.bind(this);
+    this.chamarMeninaDeVolta = this.chamarMeninaDeVolta.bind(this);
   }
 
   receberNomeDeLindinha(nome) {
@@ -85,6 +86,39 @@ class Professor extends React.Component {
     this.setState({
       mensagemDeDocinho: mensagemRecebida,
     });
+  }
+
+  chamarMeninaDeVolta({ target }) {
+    const { name } = target;
+    switch (name) {
+    case 'lindinha':
+      this.setState({
+        temTarefaLindinha: true,
+        visitante: '',
+      });
+      break;
+    case 'florzinha':
+      this.setState({
+        temTarefaFlorzinha: true,
+        numA: 0,
+        numB: 0,
+        numAAnt: 0,
+        numBAnt: 0,
+        tabuada: 0,
+        taErradoFlorzinha: false,
+        passeiNovosNumeros: false,
+      });
+      break;
+    case 'docinho':
+      this.setState({
+        temTarefaDocinho: true,
+        contagem: 0,
+        mensagemDeDocinho: '',
+      });
+      break;
+    default:
+      console.log('ops... algo esta errado');
+    }
   }
 
   render() {
@@ -146,7 +180,18 @@ class Professor extends React.Component {
                   nomeInvalido={ nomeInvalido }
                 />
               )
-              : <p>Lindinha se foi...</p> }
+              : (
+                <div>
+                  <p>Lindinha se foi....</p>
+                  <button
+                    type="button"
+                    name="lindinha"
+                    onClick={ this.chamarMeninaDeVolta }
+                  >
+                    Chamar Lindinha de volta!
+                  </button>
+                </div>
+              )}
           </div>
 
           <div className="espaco-da-menina">
@@ -159,7 +204,18 @@ class Professor extends React.Component {
                   numB={ numB }
                 />
               )
-              : <p>Florzinha se foi...</p> }
+              : (
+                <div>
+                  <p>Florzinha se foi....</p>
+                  <button
+                    type="button"
+                    name="florzinha"
+                    onClick={ this.chamarMeninaDeVolta }
+                  >
+                    Chamar Florzinha de volta!
+                  </button>
+                </div>
+              )}
           </div>
 
           <div className="espaco-da-menina">
@@ -172,7 +228,18 @@ class Professor extends React.Component {
                   ouvirDocinho={ this.ouvirDocinho }
                 />
               )
-              : <p>Docinho se foi....</p>}
+              : (
+                <div>
+                  <p>Docinho se foi....</p>
+                  <button
+                    type="button"
+                    name="docinho"
+                    onClick={ this.chamarMeninaDeVolta }
+                  >
+                    Chamar Docinho de volta!
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       </div>
