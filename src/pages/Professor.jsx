@@ -1,7 +1,9 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 import Docinho from '../components/Docinho';
 import Florzinha from '../components/Florzinha';
 import Lindinha from '../components/Lindinha';
+import RenderizaResultados from '../components/RenderizaResultados';
 import '../styles/Professor.css';
 
 const MAX_CONTAGEM_PARA_DOCINHO = 15;
@@ -124,19 +126,14 @@ class Professor extends React.Component {
   render() {
     const {
       temTarefaLindinha,
-      visitante,
+
       nomeInvalido,
       temTarefaFlorzinha,
       numA,
       numB,
-      numAAnt,
-      numBAnt,
-      tabuada,
-      taErradoFlorzinha,
-      passeiNovosNumeros,
+
       temTarefaDocinho,
       contagem,
-      mensagemDeDocinho,
     } = this.state;
     return (
       <div className="Professor">
@@ -153,23 +150,11 @@ class Professor extends React.Component {
               Florzinha deve resolver uma tabuada
               e Docinho deve clicar 15 vezes no botão Contar. Vqv!
             </p>
-            {/* Renderiza resultados de Lindinha */}
-            { !temTarefaLindinha && <h4>{`Olá "${visitante}", amigo de Lindinha`}</h4>}
-
-            {/* Renderiza resultados de Florzinha */}
-            { !taErradoFlorzinha && tabuada > 0 && <h4>{`A Florzinha resolveu a tabuada de "${numA} x ${numB} = ${tabuada}"!`}</h4> }
-            { taErradoFlorzinha && tabuada && <p>{`Tá errado Florzinha! Tabuada de "${numAAnt} x ${numBAnt}" não é "${tabuada}"!`}</p> }
-            { taErradoFlorzinha && passeiNovosNumeros && <p>{`Passei outros números da tabuada (${numA} x ${numB}) para Florzinha, vamos ver se ela sabe agora...`}</p> }
-
-            {/* Renderiza resultados de Docinho */}
-            { contagem > 0 && <h4>{`A contagem de Docinho: ${contagem}`}</h4> }
-            { !temTarefaDocinho && <p>{`Docinho me disse: "${mensagemDeDocinho}" Danadinha!`}</p>}
-
+            <RenderizaResultados state={ this.state } />
           </div>
         </div>
 
         <div className="quarto-das-meninas">
-          <small />
 
           <div className="espaco-da-menina">
             <small><em>espaço para Lindinha</em></small>
