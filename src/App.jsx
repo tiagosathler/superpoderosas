@@ -12,4 +12,7 @@ class App extends React.Component {
   }
 }
 
+// SOLUÇÃO FINAL DE TIAGO SATHLER
+// CRIADA A PARTIR DA BRANCH PRINCIPAL DEPOIS DA CONSTRUÇÃO FINAL
+
 export default App;
