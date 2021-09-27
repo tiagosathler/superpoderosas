@@ -45,7 +45,7 @@ class Lindinha extends Component {
           </label>
           <button
             type="button"
-            onClick={ funcParaLindinha(visitante) }
+            onClick={ () => funcParaLindinha(visitante) }
           >
             Enviar
           </button>

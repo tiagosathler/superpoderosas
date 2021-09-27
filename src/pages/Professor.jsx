@@ -19,9 +19,12 @@ class Professor extends React.Component {
   }
 
   receberNomeDeLindinha(nome) {
-    this.setState({
-      visitante: nome,
-    });
+    if (nome !== '' && nome.length > 3) {
+      this.setState({
+        visitante: nome,
+        temTarefaLindinha: false,
+      });
+    }
   }
 
   render() {
@@ -29,12 +32,13 @@ class Professor extends React.Component {
       temTarefaLindinha,
       temTarefaFlorzinha,
       temTarefaDocinho,
+      visitante,
     } = this.state;
     return (
       <div className="Professor">
         <small>componente Professor</small>
         <RenderizaResultados />
-        <h1>{visitante}</h1>
+        <h1>{ visitante }</h1>
 
         <div className="quarto-das-meninas">
 
