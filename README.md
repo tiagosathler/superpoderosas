@@ -1,3 +1,44 @@
+# React com As Meninas Superpoderosas
+
+Seja bem vindo(a) a este repositório! 
+
+> Meu nome é [Tiago Sathler](https://github.com/tiagosathler) ([LinkedIn](https://www.linkedin.com/in/tiagosathler/)), sou aluno da [Trybe](https://www.betrybe.com/), e estou na Tribo 14, Turma A.
+> 
+>Este repositório contém uma pequena aplicação em React para uso didático, sem vínculos com a escola, feito de forma livre e espontanea. Você pode fazer um *fork* e desenvolver sua solução, fique à vontade. Mas lembre-se: este repositório contém imagens obtidas por pequisa na Web que certamente tem direitos autorais. Portanto, não as publique sem autorização prévia do proprietário do *cartoon* [As Meninas Superpoderas](https://www.cartoonnetwork.com.br/) (Cartoon Network). O uso aqui é apenas didático.
+
+## Sobre a aplicação
+A ideia aqui é mostrar a relação entre os componentes em React: sendo o "*Professor*" um componente pai que renderiza seus componentes filhos, "*Lindinha*", "*Florzinha*", "*Docinho*" e "*Resultados*".  
+Vamos entender o [Ciclo de Vida de um Componente](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/), o estado do componente, a passagem de *props* para componentes filhos, eventos que disparam a chamada de funções no pai (e  filho), elementos de formulário controlado pelo estado e componente filho com seu próprio estado e passando estas informações ao pai.
+
+A simulação é a seguinte: O Professor combinou 3 tarefas, uma para cada menina:
+
+ - Lindinha deverá receber seu nome e entregá-lo ao Professor e ele deve checar;
+ - Docinho tem que clicar 15 vezes num botão (mas ela vai trapacear...);
+ - Florzinha deverá calcular uma multiplicação de uma tabuada que ela mesma sorteará e enviará ao professor para verificar se está correto (humm, mas ela é inteligente e pode testar antes né?);
+
+Terminada a tarefa, cada menina poderá ir embora, o que significa seu o fim de vida do componente na tela.
+
+## Como fazer
+Você deve fazer um *fork* deste repositório. Baixe seu repositório *forkeado* e instale as dependência através de `npm install`. 
+A *branch* `master` está incompleta, aguardando sua solução.
+Crie uma nova *branch* a partir da *branch* `master`, algo como "*solucao-fulano*". Se quiser espiar minha solução (longe de ser a melhor) mude para a *branch* `solucao-tiago-sathler`. Execute o `npm start` nesta *branch* se quiser entender as funcionalidades que apliquei.
+Minha solução usa termos semânticos em português (constantes, funções, etc) apenas para facilitar a distinção entre o que implementei e o que é do JavaScript e React. Não é uma boa prática, contudo justifica-se para fins didáticos.
+
+## Requisitos
+1. Implemente o componente **Lidinha** e **Resultados**: 
+Faça um `input` do tipo `text` para capturar seu nome e passar ao **Professor** através de um `button`. Lembre-se: o valor do *input* deve ser controlado pelo estado do Professor, pois ele verificará se o nome é correto (fique à vontade para implementar alguma solução simples). O seu nome deve aparecer no componente **Resultados**.
+
+2. Implemente os componentes **Docinho** e **Resultados**:
+Faça um `button` de *Clicar* para que o **Professor** conte quantas vezes ele foi clicado e mostre em **Resultados**. O estado da contagem também deverá ser controlado pelo Professor.
+ ***Desafio***: tente fazer uma trapaça - **Docinho** exibirá também a contagem no seu componente, porém somente até o número 10 e, ao final da tarefa, deverá sair de fininho revelando ao professor o que ela fez. Dica: Pense no ciclo de vida do componente.
+
+3. Implemente os componentes **Florzinha** e **Resultados**:
+Faça que **Florzinha** *tenha estado* e que ela gere dois números inteiros aleatórios entre 1 e 10 para calcular uma multiplicação. Faça tudo isso quando ela for montada na tela. Implemente um `input` tipo `number` e passe o resultado para o **Professor** quando clicar em um `button` de *Enviar*. Envie os números sorteados, o resultado que você digitou para que o Professor verifique se a conta está certa. Mostre isso em **Resultados**.
+**Desafio 1:** faça que Florzinha (que é inteligente) verifique a conta antes de você clicar no *Enviar*, avisando-o se a conta está certa ou errada. 
+**Desafio 2:** faça que o Professor passe dois números aleatórios para Florzinha casa ela tenha respondido anteriormente errado.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
