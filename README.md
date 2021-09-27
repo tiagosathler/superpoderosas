@@ -18,7 +18,7 @@ A simulação é a seguinte: O Professor combinou 3 tarefas, uma para cada menin
 
 Terminada a tarefa, cada menina poderá ir embora, o que significa o final de vida de um componente na tela (fase de desmontagem).
 
-## Como fazer
+## Como fazer:
 Você deve fazer um *fork* deste repositório. Baixe seu repositório *forkeado* e instale as dependências através de `npm install`. 
 A *branch* `master` está incompleta propositalmente, aguardando sua solução.
 Crie uma nova *branch* a partir da *branch* `master`, algo como "`solucao-fulano`". Se quiser espiar minha solução (longe de ser a melhor) mude para a *branch* `solucao-tiago-sathler`. Execute o `npm start` nesta *branch* se quiser entender as funcionalidades que apliquei.
