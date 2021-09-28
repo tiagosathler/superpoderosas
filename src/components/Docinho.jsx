@@ -3,7 +3,23 @@ import '../styles/Meninas.css';
 import '../styles/Docinho.css';
 
 class Docinho extends Component {
+  shouldComponentUpdate(nextProps) {
+    console.log(nextProps);
+    const { contagem } = nextProps;
+    if (contagem <= 10) {
+      return true;
+    }
+    return false;
+  }
+
+  componentWillUnmount() {
+    const mensagem = 'Professor, eu trapaciei, só mostrei o número até o 10';
+    const { funcMensagemDeDocinho } = this.props;
+    funcMensagemDeDocinho(mensagem);
+  }
+
   render() {
+    const { funcParaDocinho, contagem } = this.props;
     return (
       <div className="componente-docinho meninas">
         <div className="imagem">
@@ -20,6 +36,15 @@ class Docinho extends Component {
               (Segredinho: eu só vou mostrar até o número 10 kkk)!
             </em>
           </p>
+          <p>
+            {`Quantidade de cliques: ${contagem}`}
+          </p>
+          <button
+            type="button"
+            onClick={ funcParaDocinho }
+          >
+            Clique
+          </button>
         </div>
       </div>
     );

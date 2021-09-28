@@ -14,8 +14,13 @@ class Professor extends React.Component {
       temTarefaFlorzinha: true,
       temTarefaDocinho: true,
       visitante: '',
+      contagem: 0,
+      mensagem: '',
     };
     this.receberNomeDeLindinha = this.receberNomeDeLindinha.bind(this);
+    this.contarCliquesDeDocinho = this.contarCliquesDeDocinho.bind(this);
+    this.renderizarDocinho = this.renderizarDocinho.bind(this);
+    this.receberMensagemDeDocinho = this.receberMensagemDeDocinho.bind(this);
   }
 
   receberNomeDeLindinha(nome) {
@@ -27,11 +32,55 @@ class Professor extends React.Component {
     }
   }
 
+  contarCliquesDeDocinho() {
+    const { contagem } = this.state;
+    if (contagem < 15) {
+      this.setState({
+        contagem: contagem + 1,
+      });
+    } else {
+      this.setState({
+        temTarefaDocinho: false,
+      });
+    }
+  }
+
+  receberMensagemDeDocinho(texto) {
+    this.setState({
+      mensagem: texto,
+    });
+  }
+
+  renderizarDocinho() {
+    const { temTarefaDocinho, contagem, mensagem } = this.state;
+    return (
+      <div>
+        {
+          temTarefaDocinho
+            ? (
+              <Docinho
+                funcParaDocinho={ this.contarCliquesDeDocinho }
+                contagem={ contagem }
+                funcMensagemDeDocinho={ this.receberMensagemDeDocinho }
+              />
+            )
+            : (
+              <div>
+                <p>Docinho se foi....</p>
+                {`Mensagem de docinho: ${mensagem}`}
+              </div>
+            )
+        }
+      </div>
+    );
+  }
+
   render() {
     const {
       temTarefaLindinha,
       temTarefaFlorzinha,
       temTarefaDocinho,
+      contagem,
       visitante,
     } = this.state;
     return (
@@ -39,6 +88,7 @@ class Professor extends React.Component {
         <small>componente Professor</small>
         <RenderizaResultados />
         <h1>{ visitante }</h1>
+        <h1>{ contagem }</h1>
 
         <div className="quarto-das-meninas">
 
@@ -72,15 +122,7 @@ class Professor extends React.Component {
 
           <div className="espaco-da-menina docinho">
             <small><em>espaço para Docinho</em></small>
-            { temTarefaDocinho
-              ? (
-                <Docinho />
-              )
-              : (
-                <div>
-                  <p>Docinho se foi....</p>
-                </div>
-              )}
+            { this.renderizarDocinho() }
           </div>
         </div>
       </div>

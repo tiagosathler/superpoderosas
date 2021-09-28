@@ -15,7 +15,6 @@ class Lindinha extends Component {
   lidarComInput(event) {
     const { target } = event;
     const { value } = target;
-    console.log(target);
     this.setState({
       visitante: value,
     });
