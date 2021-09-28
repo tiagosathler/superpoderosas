@@ -10,10 +10,44 @@ class Professor extends React.Component {
   constructor() {
     super();
     this.state = {
-      temTarefaLindinha: true,
+      temTarefaLindinha: true, // estado inicial para ser usado no ternário do render e controlar o que será renderizado ou não
       temTarefaFlorzinha: true,
       temTarefaDocinho: true,
+      visitante: '',
+      contagem: 0,
+      mensagem: '',
     };
+    this.receberNomeDeLindinha = this.receberNomeDeLindinha.bind(this);
+    this.contarCliquesDeDocinho = this.contarCliquesDeDocinho.bind(this);
+    this.receberMensagemDeDocinho = this.receberMensagemDeDocinho.bind(this);
+  }
+
+  receberNomeDeLindinha(nome) {
+    if (nome.length > 3) {
+      this.setState({
+        visitante: nome,
+        temTarefaLindinha: false,
+      });
+    }
+  }
+
+  contarCliquesDeDocinho() {
+    const { contagem } = this.state;
+    if (contagem < 15) {
+      this.setState({
+        contagem: contagem + 1,
+      });
+    } else {
+      this.setState({
+        temTarefaDocinho: false,
+      });
+    }
+  }
+
+  receberMensagemDeDocinho(texto) {
+    this.setState({
+      mensagem: texto,
+    });
   }
 
   render() {
@@ -21,11 +55,16 @@ class Professor extends React.Component {
       temTarefaLindinha,
       temTarefaFlorzinha,
       temTarefaDocinho,
+      visitante,
+      contagem,
+      mensagem,
     } = this.state;
     return (
       <div className="Professor">
         <small>componente Professor</small>
         <RenderizaResultados />
+        <h1>{ visitante }</h1>
+        <h1>{ contagem }</h1>
 
         <div className="quarto-das-meninas">
 
@@ -33,7 +72,9 @@ class Professor extends React.Component {
             <small><em>espaço para Lindinha</em></small>
             { temTarefaLindinha
               ? (
-                <Lindinha />
+                <Lindinha
+                  funcParaLindinha={ this.receberNomeDeLindinha } // funcParaLindinha é a prop
+                />
               )
               : (
                 <div>
@@ -59,11 +100,16 @@ class Professor extends React.Component {
             <small><em>espaço para Docinho</em></small>
             { temTarefaDocinho
               ? (
-                <Docinho />
+                <Docinho
+                  funcParaDocinho={ this.contarCliquesDeDocinho }
+                  contagem={ contagem }
+                  funcMensagemDeDocinho={ this.receberMensagemDeDocinho }
+                />
               )
               : (
                 <div>
                   <p>Docinho se foi....</p>
+                  <p>{ `Mensagem de Docinho: ${mensagem}` }</p>
                 </div>
               )}
           </div>
