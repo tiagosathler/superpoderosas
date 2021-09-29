@@ -16,10 +16,12 @@ class Professor extends React.Component {
       visitante: '',
       contagem: 0,
       mensagem: '',
+      respostaFlorzinha: '',
     };
     this.receberNomeDeLindinha = this.receberNomeDeLindinha.bind(this);
     this.contarCliquesDeDocinho = this.contarCliquesDeDocinho.bind(this);
     this.receberMensagemDeDocinho = this.receberMensagemDeDocinho.bind(this);
+    this.receberRespostaFlorzinha = this.receberRespostaFlorzinha.bind(this);
   }
 
   receberNomeDeLindinha(nome) {
@@ -50,6 +52,15 @@ class Professor extends React.Component {
     });
   }
 
+  receberRespostaFlorzinha(numA, numB, resposta) {
+    if (Number(resposta) === numA * numB) { // preciso receber numA e numB de florzinha; outra coisa q resposta está vindo como string
+      this.setState({
+        temTarefaFlorzinha: false,
+        respostaFlorzinha: resposta,
+      });
+    }
+  }
+
   render() {
     const {
       temTarefaLindinha,
@@ -58,13 +69,20 @@ class Professor extends React.Component {
       visitante,
       contagem,
       mensagem,
+      respostaFlorzinha,
     } = this.state;
     return (
       <div className="Professor">
         <small>componente Professor</small>
         <RenderizaResultados />
-        <h1>{ visitante }</h1>
-        <h1>{ contagem }</h1>
+        <h2>{ visitante }</h2>
+        <h2>{ `Contagem de Docinho: ${contagem}` }</h2>
+        <h2>
+          { !temTarefaFlorzinha && `Resposta de Florzinha: ${respostaFlorzinha}` }
+          {/* { temTarefaFlorzinha
+            ? null
+            : `Resposta de Florzinha: ${respostaFlorzinha}` } */}
+        </h2>
 
         <div className="quarto-das-meninas">
 
@@ -87,7 +105,9 @@ class Professor extends React.Component {
             <small><em>espaço para Florzinha</em></small>
             { temTarefaFlorzinha
               ? (
-                <Florzinha />
+                <Florzinha
+                  mandarResposta={ this.receberRespostaFlorzinha } // mandarResposta é uma chave do objeto props
+                />
               )
               : (
                 <div>
