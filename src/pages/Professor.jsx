@@ -13,6 +13,7 @@ class Professor extends React.Component {
       temTarefaLindinha: true,
       temTarefaFlorzinha: true,
       temTarefaDocinho: true,
+      respostaFlorzinha: '',
       visitante: '',
       contagem: 0,
       mensagem: '',
@@ -21,10 +22,11 @@ class Professor extends React.Component {
     this.contarCliquesDeDocinho = this.contarCliquesDeDocinho.bind(this);
     this.renderizarDocinho = this.renderizarDocinho.bind(this);
     this.receberMensagemDeDocinho = this.receberMensagemDeDocinho.bind(this);
+    this.receberRespostaFlorzinha = this.receberRespostaFlorzinha.bind(this);
   }
 
   receberNomeDeLindinha(nome) {
-    if (nome !== '' && nome.length > 3) {
+    if (nome.length > 3) {
       this.setState({
         visitante: nome,
         temTarefaLindinha: false,
@@ -49,6 +51,18 @@ class Professor extends React.Component {
     this.setState({
       mensagem: texto,
     });
+  }
+
+  receberRespostaFlorzinha(numA, numB, resposta) {
+    console.log(typeof numA, typeof numB, typeof resposta);
+    if (Number(resposta) === numA * numB) {
+      this.setState({
+        temTarefaFlorzinha: false,
+        respostaFlorzinha: resposta,
+      });
+    } else {
+      console.log('é falso');
+    }
   }
 
   renderizarDocinho() {
@@ -80,6 +94,7 @@ class Professor extends React.Component {
       temTarefaLindinha,
       temTarefaFlorzinha,
       temTarefaDocinho,
+      respostaFlorzinha,
       contagem,
       visitante,
     } = this.state;
@@ -88,7 +103,8 @@ class Professor extends React.Component {
         <small>componente Professor</small>
         <RenderizaResultados />
         <h1>{ visitante }</h1>
-        <h1>{ contagem }</h1>
+        <h1>{ `Contagem de Docinho: ${contagem}` }</h1>
+        <h1>{ !temTarefaFlorzinha && `Resposta de Florzinha: ${respostaFlorzinha}` }</h1>
 
         <div className="quarto-das-meninas">
 
@@ -111,7 +127,9 @@ class Professor extends React.Component {
             <small><em>espaço para Florzinha</em></small>
             { temTarefaFlorzinha
               ? (
-                <Florzinha />
+                <Florzinha
+                  mandarResposta={ this.receberRespostaFlorzinha }
+                />
               )
               : (
                 <div>
