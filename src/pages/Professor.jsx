@@ -14,6 +14,8 @@ class Professor extends React.Component {
       temTarefaFlorzinha: true,
       temTarefaDocinho: true,
       respostaFlorzinha: '',
+      numA: '',
+      numB: '',
       visitante: '',
       contagem: 0,
       mensagem: '',
@@ -54,11 +56,13 @@ class Professor extends React.Component {
   }
 
   receberRespostaFlorzinha(numA, numB, resposta) {
-    console.log(typeof numA, typeof numB, typeof resposta);
+    // console.log(typeof numA, typeof numB, typeof resposta);
     if (Number(resposta) === numA * numB) {
       this.setState({
-        temTarefaFlorzinha: false,
+        numA,
+        numB,
         respostaFlorzinha: resposta,
+        temTarefaFlorzinha: false,
       });
     } else {
       console.log('é falso');
@@ -66,9 +70,9 @@ class Professor extends React.Component {
   }
 
   renderizarDocinho() {
-    const { temTarefaDocinho, contagem, mensagem } = this.state;
+    const { temTarefaDocinho, contagem } = this.state;
     return (
-      <div>
+      <div className="espaco-da-menina docinho">
         {
           temTarefaDocinho
             ? (
@@ -81,7 +85,6 @@ class Professor extends React.Component {
             : (
               <div>
                 <p>Docinho se foi....</p>
-                {`Mensagem de docinho: ${mensagem}`}
               </div>
             )
         }
@@ -97,13 +100,22 @@ class Professor extends React.Component {
       respostaFlorzinha,
       contagem,
       visitante,
+      mensagem,
     } = this.state;
     return (
       <div className="Professor">
         <small>componente Professor</small>
-        <RenderizaResultados />
-        <h1>{ visitante }</h1>
-        <h1>{ `Contagem de Docinho: ${contagem}` }</h1>
+        <RenderizaResultados
+          temTarefaLindinha={ temTarefaLindinha }
+          temTarefaFlorzinha={ temTarefaFlorzinha }
+          temTarefaDocinho={ temTarefaDocinho }
+          respostaFlorzinha={ respostaFlorzinha }
+          contagemDocinho={ contagem }
+          mensagemDocinho={ mensagem }
+          visitante={ visitante }
+
+        />
+
         <h1>{ !temTarefaFlorzinha && `Resposta de Florzinha: ${respostaFlorzinha}` }</h1>
 
         <div className="quarto-das-meninas">
