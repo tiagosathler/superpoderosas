@@ -8,6 +8,8 @@ class RenderizaResultados extends Component {
       temTarefaFlorzinha,
       temTarefaDocinho,
       respostaFlorzinha,
+      numA,
+      numB,
       contagemDocinho,
       mensagemDocinho,
       visitante } = this.props;
@@ -28,11 +30,16 @@ class RenderizaResultados extends Component {
           { !temTarefaLindinha && <h4>{`Olá "${visitante}", amigo de Lindinha`}</h4>}
 
           {/* Renderiza resultados de Florzinha */}
+          <h4>
+            { !temTarefaFlorzinha
+            && `Resposta de Florzinha: "${numA} x ${numB} = ${respostaFlorzinha}"` }
+          </h4>
 
           {/* Renderiza resultados de Docinho */}
-          { contagemDocinho > 0 && <h4>{`A contagem de Docinho: ${contagemDocinho}`}</h4> }
+          { contagemDocinho > 0
+            && <h4>{`A contagem de Docinho: ${contagemDocinho}`}</h4> }
           { !temTarefaDocinho
-        && <p>{`Docinho me disse: "${mensagemDocinho}" Danadinha!`}</p>}
+            && <p>{`Docinho me disse: "${mensagemDocinho}" Danadinha!`}</p>}
 
           {/* Renderiza Redirect para outra Rota e Pagina */}
 

@@ -101,6 +101,8 @@ class Professor extends React.Component {
       contagem,
       visitante,
       mensagem,
+      numA,
+      numB,
     } = this.state;
     return (
       <div className="Professor">
@@ -110,16 +112,14 @@ class Professor extends React.Component {
           temTarefaFlorzinha={ temTarefaFlorzinha }
           temTarefaDocinho={ temTarefaDocinho }
           respostaFlorzinha={ respostaFlorzinha }
+          numA={ numA }
+          numB={ numB }
           contagemDocinho={ contagem }
           mensagemDocinho={ mensagem }
           visitante={ visitante }
-
         />
 
-        <h1>{ !temTarefaFlorzinha && `Resposta de Florzinha: ${respostaFlorzinha}` }</h1>
-
         <div className="quarto-das-meninas">
-
           <div className="espaco-da-menina lindinha">
             <small><em>espaço para Lindinha</em></small>
             { temTarefaLindinha
