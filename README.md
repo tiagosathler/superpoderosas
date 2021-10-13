@@ -8,9 +8,9 @@ Seja bem vindo(a) a este repositório!
 
 ## Sobre a aplicação
 A ideia aqui é mostrar a relação entre os componentes em React: sendo o "*Professor*" um componente pai que renderiza seus componentes filhos, "*Lindinha*", "*Florzinha*", "*Docinho*" e "*Resultados*".  
-Vamos entender o [Ciclo de Vida de um Componente](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/), o estado do componente, a passagem de *props* para componentes filhos, eventos que disparam a chamada de funções no pai (e  filho), elementos de formulário controlado pelo estado e componente filho com seu próprio estado e passando estas informações ao pai.
+Vamos entender o [Ciclo de Vida de um Componente](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/), as fases de Montagem, Atualização e Desmontagem, os eventos que disparam a Renderização, as funções internas do React, o estado do componente, a passagem de *props* para componentes filhos, eventos que disparam a chamada de funções, elementos de formulário controlado pelo estado do compomente e a passagem das informações do estado do componente filho ao componente pai através de uma função entregue por *props* ao filho.
 
-A simulação é a seguinte: O Professor combinou 3 tarefas, uma para cada menina:
+A simulação é a seguinte: O Professor combinou 3 tarefas, uma para cada menina e cabe ao usuário da página ajudá-las através das interações:
 
  - Lindinha deverá receber seu nome e entregá-lo ao Professor e ele deve checar;
  - Docinho tem que clicar 15 vezes num botão (mas ela vai trapacear...);
@@ -25,20 +25,17 @@ Crie uma nova *branch* a partir da *branch* `master`, algo como "`solucao-fulano
 Minha solução usa termos semânticos em português (constantes, funções, etc) apenas para facilitar a distinção entre o que implementei e o que é do JavaScript e React. Não é uma boa prática, contudo justifica-se para fins didáticos. Minha solução procurou usar várias fases do ciclo de vida do componente.
 
 ## Requisitos
-1. Implemente o componente **Lidinha** e **Resultados**: 
-Faça um `input` do tipo `text` para capturar seu nome e passar ao **Professor** através de um `button`. Lembre-se: o valor do *input* deve ser controlado pelo estado do Professor, pois ele verificará se o nome é correto (fique à vontade para implementar alguma solução simples). O seu nome deve aparecer no componente **Resultados**.
+1. Implemente o componente **Lindinha** e **Resultados**: 
+Faça um `input` do tipo `text` para capturar seu nome e passá-lo ao **Professor** através de um `button`. Lembre-se: o valor do *input* pode ser controlado pelo estado do Professor ou de Lindinha, mas ele é quem deverá verificar se o nome está correto (por exemplo, tem pelo menos 3 caracteres, não contém números, começa com letra maíscula... faça como desejar). Se estiver correto, faça que o nome apareça no componente **Resultados** e a libere Lindinha de sua tarefa.
 
-2. Implemente os componentes **Florzinha** e **Resultados**:
+2. Implemente os componentes **Docinho** e **Resultados**:
+Faça um `button` de *Clicar* para que o **Professor** conte quantas vezes ele foi clicado e mostre em **Resultados**. O estado da contagem deverá ser controlado pelo Professor até o número 15, liberando-a da tarefa (já que Docinho não tem lá tanta paciência asssim...)
+ ***Desafio***: tente fazer uma trapaça - **Docinho** exibirá também a contagem no seu componente, porém somente até o número 10 e, ao final da tarefa, deverá sair de fininho revelando ao professor o que ela fez. Dica: Pense sobre o ciclo de vida do componente.
+
+3. Implemente os componentes **Florzinha** e **Resultados**:
 Faça que **Florzinha** *tenha estado* e que ela gere dois números inteiros aleatórios entre 1 e 10 para calcular uma multiplicação. Faça tudo isso quando ela for montada na tela. Implemente um `input` tipo `number` controlado pelo estado de Florzinha. Passe o resultado para o **Professor** quando clicar em um `button` de *Enviar*. Envie os números sorteados, o resultado que você digitou para que o Professor verifique se a conta está certa. Mostre isso em **Resultados**.
-**Desafio 1:** faça que Florzinha (que é inteligente) verifique a conta antes de você clicar no *Enviar*, avisando-o se a conta está certa ou errada. 
-**Desafio 2:** faça que o Professor passe dois números aleatórios para Florzinha casa ela tenha respondido anteriormente errado.
-
-3. Implemente os componentes **Docinho** e **Resultados**:
-Faça um `button` de *Clicar* para que o **Professor** conte quantas vezes ele foi clicado e mostre em **Resultados**. O estado da contagem deverá ser controlado pelo Professor (já que Docinho não tem lá tanta paciência asssim...) 
- ***Desafio***: tente fazer uma trapaça - **Docinho** exibirá também a contagem no seu componente, porém somente até o número 10 e, ao final da tarefa, deverá sair de fininho revelando ao professor o que ela fez. Dica: Pense no ciclo de vida do componente.
-
-
-
+**Desafio 1:** faça que Florzinha (que é inteligente) verifique a conta antes de você clicar no *Enviar*, alertando-nos que conta está certa ou errada. 
+**Desafio 2:** toda vez que a resposta estiver errada, faça que o Professor passe novos números aleatórios para Florzinha calcular.
 
 
 # Getting Started with Create React App
